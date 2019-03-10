@@ -15,11 +15,11 @@ import java.util.List;
  */
 
 public class Window {
+    public static GamePanel gamePanel = new GamePanel();
     public static int windowSizeX;
     public static int windowSizeY;
     public static JFrame window = new JFrame();
     public static List<JPanel> panelList = new ArrayList<JPanel>();
-    public static GamePanel gamePanel = new GamePanel();
 
     public Window() {
         /*Configurations*/

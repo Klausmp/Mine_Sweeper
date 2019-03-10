@@ -1,5 +1,6 @@
 package input;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -8,8 +9,10 @@ import java.awt.event.MouseListener;
  */
 
 public class Mouse implements MouseListener {
-    public static int mouseReleasedX = -100;
-    public static int mouseReleasedY = -100;
+    public static int mouseReleasedLeftX = -100;
+    public static int mouseReleasedLeftY = -100;
+    public static int mouseReleasedRightX = -100;
+    public static int mouseReleasedRightY = -100;
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -23,8 +26,14 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        setMouseReleasedX(e.getX());
-        setMouseReleasedY(e.getY());
+        if (SwingUtilities.isRightMouseButton(e)){
+            setMouseReleasedRightX(e.getX());
+            setMouseReleasedRightY(e.getY());
+        }
+        if (SwingUtilities.isLeftMouseButton(e)){
+            setMouseReleasedLeftX(e.getX());
+            setMouseReleasedLeftY(e.getY());
+        }
         MouseMotion.resetMouseMotion();
         //System.out.println(e.getX() + " " + e.getY());
     }
@@ -40,31 +49,41 @@ public class Mouse implements MouseListener {
     }
 
     public static void resetMouse() {
-        setMouseReleasedX(-1000);
-        setMouseReleasedY(-1000);
+        setMouseReleasedLeftX(-1000);
+        setMouseReleasedLeftY(-1000);
+        setMouseReleasedRightX(-1000);
+        setMouseReleasedRightY(-1000);
     }
 
-    public static int getMousePosX() {
-        return mouseReleasedX;
+    public static int getMouseReleasedLeftX() {
+        return mouseReleasedLeftX;
     }
 
-    public static void setMousePosX(int mousePosX) {
-        Mouse.mouseReleasedX = mousePosX;
+    public static void setMouseReleasedLeftX(int mouseReleasedLeftX) {
+        Mouse.mouseReleasedLeftX = mouseReleasedLeftX;
     }
 
-    public static int getMouseReleasedX() {
-        return mouseReleasedX;
+    public static int getMouseReleasedLeftY() {
+        return mouseReleasedLeftY;
     }
 
-    public static void setMouseReleasedX(int mouseReleasedX) {
-        Mouse.mouseReleasedX = mouseReleasedX;
+    public static void setMouseReleasedLeftY(int mouseReleasedLeftY) {
+        Mouse.mouseReleasedLeftY = mouseReleasedLeftY;
     }
 
-    public static int getMouseReleasedY() {
-        return mouseReleasedY;
+    public static int getMouseReleasedRightX() {
+        return mouseReleasedRightX;
     }
 
-    public static void setMouseReleasedY(int mouseReleasedY) {
-        Mouse.mouseReleasedY = mouseReleasedY;
+    public static void setMouseReleasedRightX(int mouseReleasedRightX) {
+        Mouse.mouseReleasedRightX = mouseReleasedRightX;
+    }
+
+    public static int getMouseReleasedRightY() {
+        return mouseReleasedRightY;
+    }
+
+    public static void setMouseReleasedRightY(int mouseReleasedRightY) {
+        Mouse.mouseReleasedRightY = mouseReleasedRightY;
     }
 }

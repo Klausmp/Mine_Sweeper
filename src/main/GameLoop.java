@@ -2,6 +2,7 @@ package main;
 
 import graphics.Window;
 import graphics.displays.GamePanel;
+import graphics.Texture;
 import util.Util;
 
 /**
@@ -25,7 +26,7 @@ public class GameLoop {
     private static int tps = 0;
     private static int currentTick = 0;
 
-    private static final int TPS = 60;
+    private static final int TPS = 60 ;
     private static final int FPS = 60;
 
     public void run() {
@@ -33,7 +34,7 @@ public class GameLoop {
     }
 
     public void init() {
-        Util.loadTextures();
+        Texture.TextureLoader.loadTextures();
         Window window = new Window();
     }
 
@@ -74,7 +75,7 @@ public class GameLoop {
             }
 
             if (System.currentTimeMillis() - getFpsTimer() >= 1000) {
-                System.out.println("FPS: " + getFps());
+                //System.out.println("FPS: " + getFps());
                 setFps(0);
                 setTps(0);
                 setFpsTimer(getFpsTimer() + 1000);

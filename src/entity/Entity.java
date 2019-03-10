@@ -2,8 +2,8 @@ package entity;
 
 import input.Mouse;
 import input.MouseMotion;
+import util.Util;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
@@ -20,13 +20,12 @@ public abstract class Entity {
         this.height = height;
     }
 
-
     public boolean isMouseDraggedOver() {
-        return MouseMotion.getMouseDraggedX() >= getPosX() && MouseMotion.getMouseDraggedX() <= getPosX() + getWight() && MouseMotion.getMouseDraggedY() >= getPosY() && MouseMotion.getMouseDraggedY() <= getPosY() + getHeight();
+        return MouseMotion.getMouseDraggedX() >= Util.getTileDisplayPosX(getPosX(), getWight()) && MouseMotion.getMouseDraggedX() <= Util.getTileDisplayPosX(getPosX(), getWight()) + getWight() && MouseMotion.getMouseDraggedY() >= Util.getTileDisplayPosY(getPosY(), getHeight()) && MouseMotion.getMouseDraggedY() <= Util.getTileDisplayPosY(getPosY(), getHeight()) + getHeight();
     }
 
     public boolean isKlicked(){
-        if (Mouse.getMouseReleasedX() >= getPosX() && Mouse.getMouseReleasedX() <= getPosX() + getWight() && Mouse.getMouseReleasedY() >= getPosY() && Mouse.getMouseReleasedY() <= getPosY() + getHeight()){
+        if (Mouse.getMouseReleasedLeftX() >= Util.getTileDisplayPosX(getPosX(), getWight()) && Mouse.getMouseReleasedLeftX() <= Util.getTileDisplayPosX(getPosX(), getWight()) + getWight() && Mouse.getMouseReleasedLeftY() >= Util.getTileDisplayPosY(getPosY(), getHeight()) && Mouse.getMouseReleasedLeftY() <= Util.getTileDisplayPosY(getPosY(), getHeight()) + getHeight()){
             Mouse.resetMouse();
             return true;
         } else {
@@ -34,9 +33,9 @@ public abstract class Entity {
         }
     }
 
-    public abstract void update();
 
-    public abstract void render(Graphics g);
+
+    public abstract void update();
 
     public int getPosX() {
         return posX;

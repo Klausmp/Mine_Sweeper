@@ -1,18 +1,16 @@
 package util;
 
 import graphics.Window;
+import graphics.displays.GamePanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-/**
+/*
  * @author Klausmp
  */
 
 public class Util {
-    public static BufferedImage skin;
+    //public static BufferedImage skin, zero, one, two, three, four, five, six, seven, eight, top, bomb, flag, deadBomb, down;
+
 
     //Erkennung der Displayauflösung
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -35,16 +33,24 @@ public class Util {
 
     }
 
-    public static void loadTextures() {
-        System.out.println("wors");
-        try {
-            skin = ImageIO.read(Window.class.getClassLoader().getResourceAsStream("gfx/skin.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static int getTileDisplayPosX(int posX, int wight) {
+        return (posX * (wight + 1)) + GamePanel.getWorld().getWorldPosX();
     }
 
-    public static BufferedImage getTexture(Texture texture) {
+    public static int getTileDisplayPosY(int posY, int height) {
+        return (posY * (height + 1)) + GamePanel.getWorld().getWorldPosY();
+    }
+
+    public static int getDisplayPosX(int posX, int wight) {
+        return (posX * wight) + GamePanel.getWorld().getWorldPosX();
+    }
+
+    public static int getDisplayPosY(int posY, int height) {
+        return (posY * height) + GamePanel.getWorld().getWorldPosY();
+    }
+
+    /*public static BufferedImage getTexture(Texture texture) {
+        System.out.println("used");
         int tileSize = 15;
         int sylieSize = 24;
         int clockWight = 11;
@@ -54,7 +60,7 @@ public class Util {
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
             case TWO:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case Three:
+            case THREE:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
             case FOUR:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
@@ -70,9 +76,9 @@ public class Util {
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
             case BOMB:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case BLANK:
+            case ZERO:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case FLAGK:
+            case Flag:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
             case DEADBOMB:
                 return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
@@ -82,7 +88,7 @@ public class Util {
                 return getSkin().getSubimage(0, 0, tileSize, tileSize);
         }
 
-    }
+    }*/
 
     public static Dimension getScreenSize() {
         return screenSize;
@@ -90,13 +96,5 @@ public class Util {
 
     public static void setScreenSize(Dimension screenSize) {
         Util.screenSize = screenSize;
-    }
-
-    public static BufferedImage getSkin() {
-        return skin;
-    }
-
-    public static void setSkin(BufferedImage skin) {
-        Util.skin = skin;
     }
 }

@@ -3,16 +3,20 @@ package graphics.displays;
 import entity.Tile;
 import input.Mouse;
 import input.MouseMotion;
+import util.Util;
+import world.World;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel {
     public static Screen screen = new Screen();
-    public static Tile tile = new Tile(50, 50, 15, 15, false);
+    public static List<World> worldList = new ArrayList<World>();
 
     public GamePanel() {
-        screen.setBounds(0, 0, 400, 400);
+        worldList.add(new World(10, 10, 8, 8, 1));
         screen.setVisible(true);
         setLayout(new BorderLayout());
         add(screen, BorderLayout.CENTER);
@@ -21,7 +25,7 @@ public class GamePanel extends JPanel {
     }
 
     public static void update() {
-        tile.update();
+        getWorld().update();
     }
 
     static class Screen extends JLabel {
@@ -32,16 +36,25 @@ public class GamePanel extends JPanel {
         }
 
         public void drawBackground(Graphics g) {
-            g.drawImage(tile.getLook(), tile.getPosX(), tile.getPosY(), tile.getWight(), tile.getHeight(), null) ;
+            Util.drawBackground(g, Color.BLACK);
         }
 
         public void drawGame(Graphics g) {
-
+            for (Tile tile : getWorld().getTileList()) {
+                g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
+            }
         }
-
     }
 
-    public void setScreenBounds(int wight, int height){
+    public static World getWorld() {
+        for (World world : getWorldList()) {
+            return world;
+        }
+        System.out.println("ERROR: KEINE WOLRD VORHANDEN (GamePanel.getWolrd)");
+        return null;
+    }
+
+    public void setScreenBounds(int wight, int height) {
         getScreen().setBounds(0, 0, wight, height);
     }
 
@@ -56,4 +69,13 @@ public class GamePanel extends JPanel {
     public static void setScreen(Screen screen) {
         GamePanel.screen = screen;
     }
+
+    public static List<World> getWorldList() {
+        return worldList;
+    }
+
+    public static void setWorldList(List<World> worldList) {
+        GamePanel.worldList = worldList;
+    }
+
 }

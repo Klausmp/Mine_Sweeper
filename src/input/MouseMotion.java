@@ -1,5 +1,6 @@
 package input;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -12,8 +13,10 @@ public class MouseMotion implements MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        setMouseDraggedX(e.getX());
-        setMouseDraggedY(e.getY());
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            setMouseDraggedX(e.getX());
+            setMouseDraggedY(e.getY());
+        }
     }
 
     @Override
