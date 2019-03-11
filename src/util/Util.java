@@ -49,47 +49,6 @@ public class Util {
         return (posY * height) + GamePanel.getWorld().getWorldPosY();
     }
 
-    /*public static BufferedImage getTexture(Texture texture) {
-        System.out.println("used");
-        int tileSize = 15;
-        int sylieSize = 24;
-        int clockWight = 11;
-        int clockHeight = 21;
-        switch (texture) {
-            case ONE:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case TWO:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case THREE:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case FOUR:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case FIVR:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case SIX:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case SEVEN:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case EIGHT:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case TOP:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case BOMB:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case ZERO:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case Flag:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case DEADBOMB:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            case DOWN:
-                return getSkin().getSubimage(texture.posX, texture.posY, tileSize, tileSize);
-            default:
-                return getSkin().getSubimage(0, 0, tileSize, tileSize);
-        }
-
-    }*/
-
     public static Dimension getScreenSize() {
         return screenSize;
     }
