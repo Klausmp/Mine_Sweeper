@@ -98,7 +98,7 @@ public class Tile extends Entity {
         }
     }
 
-    public void firstUpdate(){
+    public void firstUpdate() {
         if (isFirstUpdate()) {
             setFirstUpdate(false);
             setBombsAround(bombsAround());
@@ -116,87 +116,93 @@ public class Tile extends Entity {
     }
 
     public void gotActivated() {
-        if ((isKlicked()) && !isActivated()) {
-            setActivated(true);
-            switch (getBombsAround()) {
-                case 0:
-                    setLook(Texture.ZERO.getTexture());
-                    break;
-                case 1:
-                    setLook(Texture.ONE.getTexture());
-                    break;
-                case 2:
-                    setLook(Texture.TWO.getTexture());
-                    break;
-                case 3:
-                    setLook(Texture.THREE.getTexture());
-                    break;
-                case 4:
-                    setLook(Texture.FOUR.getTexture());
-                    break;
-                case 5:
-                    setLook(Texture.FIVR.getTexture());
-                    break;
-                case 6:
-                    setLook(Texture.SIX.getTexture());
-                    break;
-                case 7:
-                    setLook(Texture.SEVEN.getTexture());
-                    break;
-                case 8:
-                    setLook(Texture.EIGHT.getTexture());
-                    break;
-                default:
-                    System.out.println("ERROR: FALSCHE ANZAHL AN BOMBEN IN DER NÄHE (Tile.update)");
-                    setLook(Texture.DOWN.getTexture());
-                    break;
+        if (!isBomb()) {
+            if ((isKlicked()) && !isActivated()) {
+                setActivated(true);
+                switch (getBombsAround()) {
+                    case 0:
+                        setLook(Texture.ZERO.getTexture());
+                        break;
+                    case 1:
+                        setLook(Texture.ONE.getTexture());
+                        break;
+                    case 2:
+                        setLook(Texture.TWO.getTexture());
+                        break;
+                    case 3:
+                        setLook(Texture.THREE.getTexture());
+                        break;
+                    case 4:
+                        setLook(Texture.FOUR.getTexture());
+                        break;
+                    case 5:
+                        setLook(Texture.FIVR.getTexture());
+                        break;
+                    case 6:
+                        setLook(Texture.SIX.getTexture());
+                        break;
+                    case 7:
+                        setLook(Texture.SEVEN.getTexture());
+                        break;
+                    case 8:
+                        setLook(Texture.EIGHT.getTexture());
+                        break;
+                    default:
+                        System.out.println("ERROR: FALSCHE ANZAHL AN BOMBEN IN DER NÄHE (Tile.update)");
+                        setLook(Texture.DOWN.getTexture());
+                        break;
+                }
             }
-        }
-        if (isRemoteActivated()) {
-            setRemoteActivated(false);
-            switch (getBombsAround()) {
-                case -1:
-                    setLook(Texture.ZERO.getTexture());
-                    break;
-                case 0:
-                    setLook(Texture.ZERO.getTexture());
-                    break;
-                case 1:
-                    setLook(Texture.ONE.getTexture());
-                    break;
-                case 2:
-                    setLook(Texture.TWO.getTexture());
-                    break;
-                case 3:
-                    setLook(Texture.THREE.getTexture());
-                    break;
-                case 4:
-                    setLook(Texture.FOUR.getTexture());
-                    break;
-                case 5:
-                    setLook(Texture.FIVR.getTexture());
-                    break;
-                case 6:
-                    setLook(Texture.SIX.getTexture());
-                    break;
-                case 7:
-                    setLook(Texture.SEVEN.getTexture());
-                    break;
-                case 8:
-                    setLook(Texture.EIGHT.getTexture());
-                    break;
-                default:
-                    System.out.println("ERROR: FALSCHE ANZAHL AN BOMBEN IN DER NÄHE (Tile.update)");
-                    setLook(Texture.DOWN.getTexture());
-                    break;
+            if (isRemoteActivated()) {
+                setRemoteActivated(false);
+                switch (getBombsAround()) {
+                    case -1:
+                        setLook(Texture.ZERO.getTexture());
+                        break;
+                    case 0:
+                        setLook(Texture.ZERO.getTexture());
+                        break;
+                    case 1:
+                        setLook(Texture.ONE.getTexture());
+                        break;
+                    case 2:
+                        setLook(Texture.TWO.getTexture());
+                        break;
+                    case 3:
+                        setLook(Texture.THREE.getTexture());
+                        break;
+                    case 4:
+                        setLook(Texture.FOUR.getTexture());
+                        break;
+                    case 5:
+                        setLook(Texture.FIVR.getTexture());
+                        break;
+                    case 6:
+                        setLook(Texture.SIX.getTexture());
+                        break;
+                    case 7:
+                        setLook(Texture.SEVEN.getTexture());
+                        break;
+                    case 8:
+                        setLook(Texture.EIGHT.getTexture());
+                        break;
+                    default:
+                        System.out.println("ERROR: FALSCHE ANZAHL AN BOMBEN IN DER NÄHE (Tile.update)");
+                        setLook(Texture.DOWN.getTexture());
+                        break;
+                }
             }
-        }
-
-        if (isActivated() && getBombsAround() == 0) {
-            searchForZeroTiles();
-            searchForNormalTiles();
-            setLook(Texture.ZERO.getTexture());
-            setBombsAround(-1);
+            if (isActivated() && getBombsAround() == 0) {
+                searchForZeroTiles();
+                searchForNormalTiles();
+                setLook(Texture.ZERO.getTexture());
+                setBombsAround(-1);
+            }
+        } else {
+            if (isKlicked()){
+                setActivated(true);
+                setLook(Texture.DEADBOMB.getTexture());
+            }
         }
     }
 
