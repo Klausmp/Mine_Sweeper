@@ -1,7 +1,7 @@
 package entity;
 
-import graphics.displays.GamePanel;
 import graphics.Texture;
+import graphics.displays.GamePanel;
 
 import java.util.Objects;
 
@@ -114,8 +114,9 @@ public class Tile extends Entity {
             }
         } else {
             if (!isActivated() && !isRemoteActivated()) {
-                if (getLook() != Texture.TOP.getTexture())
+                if (getLook() != Texture.TOP.getTexture()) {
                     setLook(Texture.TOP.getTexture());
+                }
             }
         }
     }
