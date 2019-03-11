@@ -1,7 +1,5 @@
 package graphics;
 
-import graphics.Window;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -21,7 +19,16 @@ public enum Texture {
     DOWN(TextureLoader.getDown()),
     BOMB(TextureLoader.getBomb()),
     DEADBOMB(TextureLoader.getDeadBomb()),
-    Flag(TextureLoader.getFlag());
+    Flag(TextureLoader.getFlag()),
+    NUMBERZERO(TextureLoader.getNumberZero()),
+    NUMBERTWO(TextureLoader.getNumberTwo()),
+    NUMBERTHREE(TextureLoader.getNumberTwo()),
+    NUMBERFOUR(TextureLoader.getNumberFour()),
+    NUMBERFIVE(TextureLoader.getNumberFive()),
+    NUMBERSIX(TextureLoader.getNumberSix()),
+    NUMBERSEVEN(TextureLoader.getNumberSeven()),
+    NUMBEREIGHT(TextureLoader.getNumberEight()),
+    NUMBERNINE(TextureLoader.getNumberNine());
 
     public BufferedImage texture;
 
@@ -30,6 +37,7 @@ public enum Texture {
     }
 
     public BufferedImage getTexture() {
+        //System.out.println("used");
         return texture;
     }
 
@@ -38,39 +46,61 @@ public enum Texture {
     }
 
     public static class TextureLoader {
-        public static BufferedImage skin, zero, one, two, three, four, five, six, seven, eight, top, bomb, flag, deadBomb, down;
+        public static BufferedImage
+                skin, zero, one, two, three, four, five, six, seven, eight,
+                numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine,
+                top, bomb, flag, deadBomb, down;
+        public static final int TILESIZE = 15;
+        public static final int CLOCKWIGHT = 11;
+        public static final int CLOCKHEIGHT = 21;
 
         public static void loadTextures() {
             try {
                 setSkin(ImageIO.read(Objects.requireNonNull(Window.class.getClassLoader().getResourceAsStream("gfx/skin.png"))));
 
-                setZero(getSkin().getSubimage(0, 0, 15, 15));
+                setZero(getSkin().getSubimage(0, 0, getTILESIZE(), getTILESIZE()));
 
-                setOne(getSkin().getSubimage(16, 0, 15, 15));
+                setOne(getSkin().getSubimage(16, 0, getTILESIZE(), getTILESIZE()));
 
-                setTwo(getSkin().getSubimage(32, 0, 15, 15));
+                setTwo(getSkin().getSubimage(32, 0, getTILESIZE(), getTILESIZE()));
 
-                setThree(getSkin().getSubimage(48, 0, 15, 15));
+                setThree(getSkin().getSubimage(48, 0, getTILESIZE(), getTILESIZE()));
 
-                setFour(getSkin().getSubimage(64, 0, 15, 15));
+                setFour(getSkin().getSubimage(64, 0, getTILESIZE(), getTILESIZE()));
 
-                setFive(getSkin().getSubimage(80, 0, 15, 15));
+                setFive(getSkin().getSubimage(80, 0, getTILESIZE(), getTILESIZE()));
 
-                setSix(getSkin().getSubimage(96, 0, 15, 15));
+                setSix(getSkin().getSubimage(96, 0, getTILESIZE(), getTILESIZE()));
 
-                setSeven(getSkin().getSubimage(112, 0, 15, 15));
+                setSeven(getSkin().getSubimage(112, 0, getTILESIZE(), getTILESIZE()));
 
-                setEight(getSkin().getSubimage(128, 0, 15, 15));
+                setEight(getSkin().getSubimage(128, 0, getTILESIZE(), getTILESIZE()));
 
-                setTop(getSkin().getSubimage(0, 16, 15, 15));
+                setTop(getSkin().getSubimage(0, 16, getTILESIZE(), getTILESIZE()));
 
-                setDown(getSkin().getSubimage(16, 16, 15, 15));
+                setDown(getSkin().getSubimage(16, 16, getTILESIZE(), getTILESIZE()));
 
-                setBomb(getSkin().getSubimage(32, 16, 15, 15));
+                setBomb(getSkin().getSubimage(32, 16, getTILESIZE(), getTILESIZE()));
 
-                setDeadBomb(getSkin().getSubimage(80, 16, 15, 15));
+                setDeadBomb(getSkin().getSubimage(80, 16, getTILESIZE(), getTILESIZE()));
 
-                setFlag(getSkin().getSubimage(48, 16, 15, 15));
+                setFlag(getSkin().getSubimage(48, 16, getTILESIZE(), getTILESIZE()));
+
+                setNumberZero(getSkin().getSubimage(0, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberOne(getSkin().getSubimage(12, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberTwo(getSkin().getSubimage(24, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setThree(getSkin().getSubimage(36, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setFour(getSkin().getSubimage(48, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setFive(getSkin().getSubimage(60, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setEight(getSkin().getSubimage(72, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberNine(getSkin().getSubimage(84, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -157,6 +187,86 @@ public enum Texture {
             TextureLoader.eight = eight;
         }
 
+        public static BufferedImage getNumberZero() {
+            return numberZero;
+        }
+
+        public static void setNumberZero(BufferedImage numberZero) {
+            TextureLoader.numberZero = numberZero;
+        }
+
+        public static BufferedImage getNumberOne() {
+            return numberOne;
+        }
+
+        public static void setNumberOne(BufferedImage numberOne) {
+            TextureLoader.numberOne = numberOne;
+        }
+
+        public static BufferedImage getNumberTwo() {
+            return numberTwo;
+        }
+
+        public static void setNumberTwo(BufferedImage numberTwo) {
+            TextureLoader.numberTwo = numberTwo;
+        }
+
+        public static BufferedImage getNumberThree() {
+            return numberThree;
+        }
+
+        public static void setNumberThree(BufferedImage numberThree) {
+            TextureLoader.numberThree = numberThree;
+        }
+
+        public static BufferedImage getNumberFour() {
+            return numberFour;
+        }
+
+        public static void setNumberFour(BufferedImage numberFour) {
+            TextureLoader.numberFour = numberFour;
+        }
+
+        public static BufferedImage getNumberFive() {
+            return numberFive;
+        }
+
+        public static void setNumberFive(BufferedImage numberFive) {
+            TextureLoader.numberFive = numberFive;
+        }
+
+        public static BufferedImage getNumberSix() {
+            return numberSix;
+        }
+
+        public static void setNumberSix(BufferedImage numberSix) {
+            TextureLoader.numberSix = numberSix;
+        }
+
+        public static BufferedImage getNumberSeven() {
+            return numberSeven;
+        }
+
+        public static void setNumberSeven(BufferedImage numberSeven) {
+            TextureLoader.numberSeven = numberSeven;
+        }
+
+        public static BufferedImage getNumberEight() {
+            return numberEight;
+        }
+
+        public static void setNumberEight(BufferedImage numberEight) {
+            TextureLoader.numberEight = numberEight;
+        }
+
+        public static BufferedImage getNumberNine() {
+            return numberNine;
+        }
+
+        public static void setNumberNine(BufferedImage numberNine) {
+            TextureLoader.numberNine = numberNine;
+        }
+
         public static BufferedImage getTop() {
             return top;
         }
@@ -196,24 +306,17 @@ public enum Texture {
         public static void setDown(BufferedImage down) {
             TextureLoader.down = down;
         }
+
+        public static int getTILESIZE() {
+            return TILESIZE;
+        }
+
+        public static int getCLOCKWIGHT() {
+            return CLOCKWIGHT;
+        }
+
+        public static int getCLOCKHEIGHT() {
+            return CLOCKHEIGHT;
+        }
     }
 }
-
-
-
-/*
-ZERO(0, 0),
-    ONE (16, 0),
-    TWO (32, 0),
-    THREE(48, 0),
-    FOUR (64, 0),
-    FIVR (80, 0),
-    SIX (96, 0),
-    SEVEN (112, 0),
-    EIGHT (128, 0),
-    TOP (0, 16),
-    DOWN(16, 16),
-    BOMB (32, 16),
-    DEADBOMB (80, 16),
-    Flag(48, 16);
- */
