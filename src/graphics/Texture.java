@@ -23,7 +23,7 @@ public enum Texture {
     NUMBERZERO(TextureLoader.getNumberZero()),
     NUMBERONE(TextureLoader.getNumberOne()),
     NUMBERTWO(TextureLoader.getNumberTwo()),
-    NUMBERTHREE(TextureLoader.getNumberTwo()),
+    NUMBERTHREE(TextureLoader.getNumberThree()),
     NUMBERFOUR(TextureLoader.getNumberFour()),
     NUMBERFIVE(TextureLoader.getNumberFive()),
     NUMBERSIX(TextureLoader.getNumberSix()),
@@ -93,15 +93,19 @@ public enum Texture {
 
                 setNumberTwo(getSkin().getSubimage(24, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setThree(getSkin().getSubimage(36, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setNumberThree(getSkin().getSubimage(36, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setFour(getSkin().getSubimage(48, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setNumberFour(getSkin().getSubimage(48, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setFive(getSkin().getSubimage(60, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setNumberFive(getSkin().getSubimage(60, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setEight(getSkin().getSubimage(72, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setNumberSix(getSkin().getSubimage(72, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setNumberNine(getSkin().getSubimage(84, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setNumberSeven(getSkin().getSubimage(84, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberEight(getSkin().getSubimage(96, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberNine(getSkin().getSubimage(108, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
             } catch (IOException e) {
                 e.printStackTrace();
