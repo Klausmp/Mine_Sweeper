@@ -10,13 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GamePanel extends JPanel {
     public static Screen screen = new Screen();
     public static List<World> worldList = new ArrayList<World>();
 
     public GamePanel() {
-        worldList.add(new World(10, 10, 8, 8, 1));
+        worldList.add(new World(10, 10, 8, 8, 15));
         screen.setVisible(true);
         setLayout(new BorderLayout());
         add(screen, BorderLayout.CENTER);
@@ -25,7 +26,7 @@ public class GamePanel extends JPanel {
     }
 
     public static void update() {
-        getWorld().update();
+        Objects.requireNonNull(getWorld()).update();
     }
 
     static class Screen extends JLabel {

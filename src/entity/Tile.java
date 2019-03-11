@@ -3,26 +3,28 @@ package entity;
 import graphics.displays.GamePanel;
 import graphics.Texture;
 
+import java.util.Objects;
+
 public class Tile extends Entity {
     public int bombsAround;
-    public boolean isFlaggt;
+    public boolean isFlagged;
     public boolean isBomb;
     public boolean isActivated;
     public boolean isRemoteActivated;
     public boolean isFirstUpdate = true;
 
-    public Tile(int posX, int posY, int wight, int height, boolean isFlaggt) {
+    public Tile(int posX, int posY, int wight, int height, boolean isFlagged) {
         super(posX, posY, wight, height);
         setLook(Texture.TOP.getTexture());
         setBomb(false);
-        setFlaggt(isFlaggt);
+        setFlagged(isFlagged);
     }
 
     public Tile(int posX, int posY, int wight, int height) {
         super(posX, posY, wight, height);
         setLook(Texture.TOP.getTexture());
         setBomb(false);
-        setFlaggt(false);
+        setFlagged(false);
     }
 
     public int bombsAround() {
@@ -105,12 +107,15 @@ public class Tile extends Entity {
         }
     }
 
-    public void mousDragtOver() {
+    public void modsDragsOver() {
         if (isMouseDraggedOver() && !isActivated() && !isRemoteActivated()) {
-            setLook(Texture.DOWN.getTexture());
+            if (getLook() != Texture.DOWN.getTexture()) {
+                setLook(Texture.DOWN.getTexture());
+            }
         } else {
             if (!isActivated() && !isRemoteActivated()) {
-                setLook(Texture.TOP.getTexture());
+                if (getLook() != Texture.TOP.getTexture())
+                    setLook(Texture.TOP.getTexture());
             }
         }
     }
@@ -199,7 +204,7 @@ public class Tile extends Entity {
                 setBombsAround(-1);
             }
         } else {
-            if (isKlicked()){
+            if (isKlicked()) {
                 setActivated(true);
                 setLook(Texture.DEADBOMB.getTexture());
             }
@@ -208,9 +213,11 @@ public class Tile extends Entity {
 
     @Override
     public void update() {
-        firstUpdate();
-        mousDragtOver();
-        gotActivated();
+        if (!Objects.requireNonNull(GamePanel.getWorld()).isGameOver()) {
+            firstUpdate();
+            modsDragsOver();
+            gotActivated();
+        }
     }
 
     public int getBombsAround() {
@@ -221,12 +228,12 @@ public class Tile extends Entity {
         this.bombsAround = bombsAround;
     }
 
-    public boolean isFlaggt() {
-        return isFlaggt;
+    public boolean isFlagged() {
+        return isFlagged;
     }
 
-    public void setFlaggt(boolean flaggt) {
-        isFlaggt = flaggt;
+    public void setFlagged(boolean flagged) {
+        isFlagged = flagged;
     }
 
     public boolean isBomb() {

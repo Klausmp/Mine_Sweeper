@@ -27,22 +27,27 @@ public class World {
     }
 
     public void update() {
-        for (Tile tile : getTileList()) {
-            tile.update();
+        if (!isGameWon()) {
+            for (Tile tile : getTileList()) {
+                tile.update();
+            }
         }
+        //System.out.println("GW " +isGameWon());
+        //System.out.println("GO " +isGameOver());
     }
 
     public boolean isGameWon() {
         for (Tile tile : getTileList()) {
-            if (!tile.isActivated() && !tile.isBomb()){
+            if (!tile.isActivated() && !tile.isBomb()) {
                 return false;
             }
         }
         return true;
     }
-    public boolean isGameOver(){
-        for (Tile tile: getTileList()) {
-            if (tile.isBomb() && tile.isActivated()){
+
+    public boolean isGameOver() {
+        for (Tile tile : getTileList()) {
+            if (tile.isBomb() && tile.isActivated()) {
                 return true;
             }
         }
