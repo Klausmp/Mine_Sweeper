@@ -1,5 +1,6 @@
 package graphics.displays;
 
+import entity.Clock;
 import entity.Tile;
 import input.Mouse;
 import input.MouseMotion;
@@ -15,18 +16,20 @@ import java.util.Objects;
 public class GamePanel extends JPanel {
     public static Screen screen = new Screen();
     public static List<World> worldList = new ArrayList<World>();
+    public static Clock clock = new Clock(200, 200);
 
     public GamePanel() {
-        worldList.add(new World(10, 10, 8, 8, 15));
         screen.setVisible(true);
         setLayout(new BorderLayout());
         add(screen, BorderLayout.CENTER);
         addMouseListener(new Mouse());
         addMouseMotionListener(new MouseMotion());
+        worldList.add(new World(10, 10, 8, 8, 15));
     }
 
     public static void update() {
         Objects.requireNonNull(getWorld()).update();
+        clock.update();
     }
 
     static class Screen extends JLabel {
@@ -44,6 +47,7 @@ public class GamePanel extends JPanel {
             for (Tile tile : getWorld().getTileList()) {
                 g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
             }
+            clock.render(g);
         }
     }
 
