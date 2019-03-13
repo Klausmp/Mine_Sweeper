@@ -24,11 +24,16 @@ public class GamePanel extends JPanel {
         add(screen, BorderLayout.CENTER);
         addMouseListener(new Mouse());
         addMouseMotionListener(new MouseMotion());
-        worldList.add(new World(10, 10, 8, 8, 15));
+        worldList.add(new World(10, 10, 10, 10, 10));
     }
 
     public static void update() {
         Objects.requireNonNull(getWorld()).update();
+        if (isGameStarted()){
+            timer.start();
+        } else {
+            timer.stop();
+        }
         timer.update();
     }
 
@@ -57,6 +62,15 @@ public class GamePanel extends JPanel {
         }
         System.out.println("ERROR: KEINE WOLRD VORHANDEN (GamePanel.getWolrd)");
         return null;
+    }
+
+    public static boolean isGameStarted(){
+        for (Tile tile: getWorld().getTileList()){
+            if (tile.isActivated() && !getWorld().isGameWon() && !getWorld().isGameOver()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setScreenBounds(int wight, int height) {
