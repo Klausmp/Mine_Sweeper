@@ -5,34 +5,26 @@ import graphics.Texture;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Clock extends Entity {
+public abstract class Counter extends Entity {
     public BufferedImage look1;
     public BufferedImage look2;
     public BufferedImage look3;
-    public int time = 0;
-    public boolean isClockRunning = true;
+    public int number = 0;
+    public boolean isRunning = false;
 
-
-    public Clock(int posX, int posY) {
+    public Counter(int posX, int posY, boolean isRunning) {
         super(posX, posY, 35, 31);
+        setRunning(isRunning);
     }
 
     @Override
-    public void update() {
-        if (getTime() >= 999) {
-            stop();
-        }
-        if (isClockRunning()) {
-            time++;
-        }
-        setLooks();
-    }
+    public abstract void update();
 
     public void setLooks() {
         for (int i = 1; i <= 3; i++) {
             setLook3(getLook2());
             setLook2(getLook1());
-            switch (getSpecificNumber(getTime(), i)) {
+            switch (getSpecificNumber(getNumber(), i)) {
                 case 0:
                     setLook1(Texture.NUMBERZERO.getTexture());
                     break;
@@ -83,15 +75,15 @@ public class Clock extends Entity {
     }
 
     public void start() {
-        setClockRunning(true);
+        setRunning(true);
     }
 
     public void stop() {
-        setClockRunning(false);
+        setRunning(false);
     }
 
     public void reset() {
-
+        setNumber(0);
     }
 
     public BufferedImage getLook1() {
@@ -118,19 +110,19 @@ public class Clock extends Entity {
         this.look3 = look3;
     }
 
-    public int getTime() {
-        return time;
+    public int getNumber() {
+        return number;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public boolean isClockRunning() {
-        return isClockRunning;
+    public boolean isRunning() {
+        return isRunning;
     }
 
-    public void setClockRunning(boolean clockRunning) {
-        isClockRunning = clockRunning;
+    public void setRunning(boolean running) {
+        isRunning = running;
     }
 }
