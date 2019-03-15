@@ -205,7 +205,7 @@ public class Tile extends Entity {
                 setBombsAround(-1);
             }
         } else {
-            if (isLeftKlicked()) {
+            if (isLeftKlicked() && !isFlagged()) {
                 setActivated(true);
                 setLook(Texture.DEADBOMB.getTexture());
             }
