@@ -55,6 +55,8 @@ public abstract class Counter extends Entity {
                 case 9:
                     setLook1(Texture.NUMBERNINE.getTexture());
                     break;
+                default:
+                    setLook1(Texture.NUMBERMINUS.getTexture());
             }
         }
 
