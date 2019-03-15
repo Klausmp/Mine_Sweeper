@@ -1,7 +1,5 @@
 package graphics;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.TextLoader;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -32,7 +30,7 @@ public enum Texture {
     NUMBERSEVEN(TextureLoader.getNumberSeven()),
     NUMBEREIGHT(TextureLoader.getNumberEight()),
     NUMBERNINE(TextureLoader.getNumberNine()),
-    NUMBERMINUS(TextureLoader.getNumberMinus());
+    MINUS(TextureLoader.getMinus());
 
     public BufferedImage texture;
 
@@ -52,7 +50,8 @@ public enum Texture {
     public static class TextureLoader {
         public static BufferedImage
                 skin, zero, one, two, three, four, five, six, seven, eight,
-                numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine, numberMinus,
+                numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine,
+                minus,
                 top, bomb, flag, deadBomb, down;
         public static final int TILESIZE = 15;
         public static final int CLOCKWIGHT = 11;
@@ -110,7 +109,7 @@ public enum Texture {
 
                 setNumberNine(getSkin().getSubimage(108, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
-                setNumberMinus(getSkin().getSubimage(120, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+                setMinus(getSkin().getSubimage(120, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -317,12 +316,12 @@ public enum Texture {
             TextureLoader.down = down;
         }
 
-        public static BufferedImage getNumberMinus() {
-            return numberMinus;
+        public static BufferedImage getMinus() {
+            return minus;
         }
 
-        public static void setNumberMinus(BufferedImage numberMinus) {
-            TextureLoader.numberMinus = numberMinus;
+        public static void setMinus(BufferedImage minus) {
+            TextureLoader.minus = minus;
         }
 
         public static int getTILESIZE() {
