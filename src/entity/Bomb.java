@@ -3,18 +3,19 @@ package entity;
 import graphics.Texture;
 import graphics.displays.GamePanel;
 
+import java.util.Objects;
+
 public class Bomb extends Tile {
     public boolean gameEnd = false;
 
     public Bomb(int posX, int posY, int wight, int height) {
         super(posX, posY, wight, height, false);
         setBomb(true);
-        setLook(Texture.BOMB.getTexture());
     }
 
     @Override
     public void update() {
-        if (!GamePanel.getWorld().isGameOver()) {
+        if (!Objects.requireNonNull(GamePanel.getWorld()).isGameOver()) {
             modsDragsOver();
             gotLeftKlicked();
             gotRightKlicked();
