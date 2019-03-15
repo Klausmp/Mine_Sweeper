@@ -108,12 +108,12 @@ public class Tile extends Entity {
     }
 
     public void modsDragsOver() {
-        if (isMouseDraggedOver() && !isActivated() && !isRemoteActivated()) {
+        if (isMouseDraggedOver() && !isActivated() && !isRemoteActivated() && !isFlagged()) {
             if (getLook() != Texture.DOWN.getTexture()) {
                 setLook(Texture.DOWN.getTexture());
             }
         } else {
-            if (!isActivated() && !isRemoteActivated()) {
+            if (!isActivated() && !isRemoteActivated() && !isFlagged()) {
                 if (getLook() != Texture.TOP.getTexture()) {
                     setLook(Texture.TOP.getTexture());
                 }
@@ -121,9 +121,9 @@ public class Tile extends Entity {
         }
     }
 
-    public void gotActivated() {
-        if (!isBomb()) {
-            if ((isKlicked()) && !isActivated()) {
+    public void gotLeftKlicked() {
+        if (!isBomb() && !isFlagged()) {
+            if ((isLeftKlicked()) && !isActivated()) {
                 setActivated(true);
                 switch (getBombsAround()) {
                     case 0:
@@ -205,9 +205,23 @@ public class Tile extends Entity {
                 setBombsAround(-1);
             }
         } else {
-            if (isKlicked()) {
+            if (isLeftKlicked()) {
                 setActivated(true);
                 setLook(Texture.DEADBOMB.getTexture());
+            }
+        }
+    }
+
+    public void gotRightKlicked() {
+        if (isFlagged()) {
+            if (isRightKlicked() && !isActivated()){
+                setLook(Texture.TOP.getTexture());
+                setFlagged(false);
+            }
+        } else {
+            if (isRightKlicked() && !isActivated()){
+                setLook(Texture.FLAG.getTexture());
+                setFlagged(true);
             }
         }
     }
@@ -217,7 +231,8 @@ public class Tile extends Entity {
         if (!Objects.requireNonNull(GamePanel.getWorld()).isGameOver()) {
             firstUpdate();
             modsDragsOver();
-            gotActivated();
+            gotLeftKlicked();
+            gotRightKlicked();
         }
     }
 

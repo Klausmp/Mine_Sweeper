@@ -24,7 +24,7 @@ public abstract class Entity {
         return MouseMotion.getMouseDraggedX() >= Util.getTileDisplayPosX(getPosX(), getWight()) && MouseMotion.getMouseDraggedX() <= Util.getTileDisplayPosX(getPosX(), getWight()) + getWight() && MouseMotion.getMouseDraggedY() >= Util.getTileDisplayPosY(getPosY(), getHeight()) && MouseMotion.getMouseDraggedY() <= Util.getTileDisplayPosY(getPosY(), getHeight()) + getHeight();
     }
 
-    public boolean isKlicked(){
+    public boolean isLeftKlicked(){
         if (Mouse.getMouseReleasedLeftX() >= Util.getTileDisplayPosX(getPosX(), getWight()) && Mouse.getMouseReleasedLeftX() <= Util.getTileDisplayPosX(getPosX(), getWight()) + getWight() && Mouse.getMouseReleasedLeftY() >= Util.getTileDisplayPosY(getPosY(), getHeight()) && Mouse.getMouseReleasedLeftY() <= Util.getTileDisplayPosY(getPosY(), getHeight()) + getHeight()){
             Mouse.resetMouse();
             return true;
@@ -33,7 +33,14 @@ public abstract class Entity {
         }
     }
 
-
+    public boolean isRightKlicked(){
+        if (Mouse.getMouseReleasedRightX() >= Util.getTileDisplayPosX(getPosX(), getWight()) && Mouse.getMouseReleasedRightX() <= Util.getTileDisplayPosX(getPosX(), getWight()) + getWight() && Mouse.getMouseReleasedRightY() >= Util.getTileDisplayPosY(getPosY(), getHeight()) &&Mouse.getMouseReleasedRightY() <= Util.getTileDisplayPosY(getPosY(), getHeight()) + getHeight()){
+            Mouse.resetMouse();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public abstract void update();
 

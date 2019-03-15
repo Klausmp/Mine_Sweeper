@@ -16,7 +16,8 @@ public class Bomb extends Tile {
     public void update() {
         if (!GamePanel.getWorld().isGameOver()) {
             modsDragsOver();
-            gotActivated();
+            gotLeftKlicked();
+            gotRightKlicked();
         } else {
             if (!isGameEnd()) {
                 endOfGame();
