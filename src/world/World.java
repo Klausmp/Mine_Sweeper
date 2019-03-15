@@ -21,7 +21,7 @@ public class World {
         setWight(wight);
         setHeight(height);
         setAmountOfBombs(amountOfBombs);
-        map = new boolean[wight][height];
+        setMap(new boolean[wight][height]);
         fillMapWithBombs();
         fillTileList();
     }
@@ -37,6 +37,23 @@ public class World {
     }
 
     public boolean isGameWon() {
+        return isEveryBombFlagt() || isEveryNotBombActivated();
+    }
+
+    public boolean isEveryBombFlagt(){
+        boolean result = false;
+        for (Tile tile: getTileList()) {
+            if (tile.isFlagged() && !tile.isBomb()){
+                return false;
+            }
+            if (tile.isBomb() && !tile.isFlagged()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isEveryNotBombActivated(){
         for (Tile tile : getTileList()) {
             if (!tile.isActivated() && !tile.isBomb()) {
                 return false;
