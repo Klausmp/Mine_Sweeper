@@ -1,5 +1,7 @@
 package graphics;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.TextLoader;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -29,7 +31,8 @@ public enum Texture {
     NUMBERSIX(TextureLoader.getNumberSix()),
     NUMBERSEVEN(TextureLoader.getNumberSeven()),
     NUMBEREIGHT(TextureLoader.getNumberEight()),
-    NUMBERNINE(TextureLoader.getNumberNine());
+    NUMBERNINE(TextureLoader.getNumberNine()),
+    NUMBERMINUS(TextureLoader.getNumberMinus());
 
     public BufferedImage texture;
 
@@ -49,7 +52,7 @@ public enum Texture {
     public static class TextureLoader {
         public static BufferedImage
                 skin, zero, one, two, three, four, five, six, seven, eight,
-                numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine,
+                numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine, numberMinus,
                 top, bomb, flag, deadBomb, down;
         public static final int TILESIZE = 15;
         public static final int CLOCKWIGHT = 11;
@@ -106,6 +109,8 @@ public enum Texture {
                 setNumberEight(getSkin().getSubimage(96, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
                 setNumberNine(getSkin().getSubimage(108, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setNumberMinus(getSkin().getSubimage(120, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -310,6 +315,14 @@ public enum Texture {
 
         public static void setDown(BufferedImage down) {
             TextureLoader.down = down;
+        }
+
+        public static BufferedImage getNumberMinus() {
+            return numberMinus;
+        }
+
+        public static void setNumberMinus(BufferedImage numberMinus) {
+            TextureLoader.numberMinus = numberMinus;
         }
 
         public static int getTILESIZE() {
