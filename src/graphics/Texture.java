@@ -21,7 +21,7 @@ public enum Texture {
     DOWN(TextureLoader.getDown()),
     BOMB(TextureLoader.getBomb()),
     DEADBOMB(TextureLoader.getDeadBomb()),
-    Flag(TextureLoader.getFlag()),
+    FLAG(TextureLoader.getFlag()),
     NUMBERZERO(TextureLoader.getNumberZero()),
     NUMBERONE(TextureLoader.getNumberOne()),
     NUMBERTWO(TextureLoader.getNumberTwo()),
