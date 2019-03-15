@@ -1,5 +1,6 @@
 package graphics.displays;
 
+import entity.BombCounter;
 import entity.Timer;
 import entity.Tile;
 import input.Mouse;
@@ -17,6 +18,7 @@ public class GamePanel extends JPanel {
     public static Screen screen = new Screen();
     public static List<World> worldList = new ArrayList<World>();
     public static Timer timer = new Timer(200, 200, false);
+    public static BombCounter bombCounter = new BombCounter(180, 100, true);
 
     public GamePanel() {
         screen.setVisible(true);
@@ -35,6 +37,7 @@ public class GamePanel extends JPanel {
             timer.stop();
         }
         timer.update();
+        bombCounter.update();
     }
 
     static class Screen extends JLabel {
@@ -53,6 +56,7 @@ public class GamePanel extends JPanel {
                 g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
             }
             timer.render(g);
+            bombCounter.render(g);
         }
     }
 
