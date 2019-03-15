@@ -56,13 +56,16 @@ public abstract class Counter extends Entity {
                     setLook1(Texture.NUMBERNINE.getTexture());
                     break;
                 default:
-                    setLook1(Texture.NUMBERMINUS.getTexture());
+                    setLook1(Texture.MINUS.getTexture());
             }
         }
 
     }
 
     public int getSpecificNumber(int numbern, int position) {
+        if (numbern < 0){
+            numbern *= -1;
+        }
         for (int i = 1; i < position; i++) {
             numbern /= 10;
         }
@@ -70,7 +73,11 @@ public abstract class Counter extends Entity {
     }
 
     public void render(Graphics g) {
-        g.drawImage(getLook1(), getPosX(), getPosY(), null);
+        if (getNumber() < 0) {
+            g.drawImage(Texture.MINUS.getTexture(), getPosX(), getPosY(), null);
+        } else {
+            g.drawImage(getLook1(), getPosX(), getPosY(), null);
+        }
         g.drawImage(getLook2(), getPosX() + getLook2().getWidth() + 1, getPosY(), null);
         g.drawImage(getLook3(), getPosX() + (getLook3().getWidth() * 2) + 1, getPosY(), null);
 
