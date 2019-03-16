@@ -123,7 +123,7 @@ public class Tile extends Entity {
 
     public void gotLeftKlicked() {
         if (!isBomb() && !isFlagged()) {
-            if ((isLeftKlicked()) && !isActivated()) {
+            if ((isTileLeftKlicked()) && !isActivated()) {
                 setActivated(true);
                 switch (getBombsAround()) {
                     case 0:
@@ -205,7 +205,7 @@ public class Tile extends Entity {
                 setBombsAround(-1);
             }
         } else {
-            if (isLeftKlicked() && !isFlagged()) {
+            if (isTileLeftKlicked() && !isFlagged()) {
                 setActivated(true);
                 setLook(Texture.DEADBOMB.getTexture());
             }
@@ -214,12 +214,12 @@ public class Tile extends Entity {
 
     public void gotRightKlicked() {
         if (isFlagged()) {
-            if (isRightKlicked() && !isActivated()){
+            if (isTileRightKlicked() && !isActivated()){
                 setLook(Texture.TOP.getTexture());
                 setFlagged(false);
             }
         } else {
-            if (isRightKlicked() && !isActivated()){
+            if (isTileRightKlicked() && !isActivated()){
                 setLook(Texture.FLAG.getTexture());
                 setFlagged(true);
             }
