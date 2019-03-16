@@ -18,7 +18,6 @@ public class StartButton extends Entity {
     @Override
     public void update() {
         if (isLeftKlicked()){
-            System.out.println("hit");
             Objects.requireNonNull(GamePanel.getWorld()).setDead(true);
             GamePanel.getWorldList().clear();
         }
