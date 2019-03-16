@@ -6,13 +6,15 @@ import java.awt.event.MouseMotionListener;
 
 public class MouseMotion implements MouseMotionListener {
 
-    public static int mouseDraggedX = -100;
-    public static int MouseDraggedY = -100;
+    public static int mouseDraggedX;
+    public static int MouseDraggedY;
     public static int mouseMovedX;
     public static int mouseMovedY;
+    public static boolean isMouseDragt = false;
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        setIsMouseDragt(true);
         if (SwingUtilities.isLeftMouseButton(e)) {
             setMouseDraggedX(e.getX());
             setMouseDraggedY(e.getY());
@@ -28,6 +30,7 @@ public class MouseMotion implements MouseMotionListener {
     public static void resetMouseMotion(){
         MouseMotion.setMouseDraggedX(-1000);
         MouseMotion.setMouseDraggedY(-1000);
+        setIsMouseDragt(false);
     }
 
     public static int getMouseDraggedX() {
@@ -60,5 +63,13 @@ public class MouseMotion implements MouseMotionListener {
 
     public static void setMouseMovedY(int mouseMovedY) {
         MouseMotion.mouseMovedY = mouseMovedY;
+    }
+
+    public static boolean isIsMouseDragt() {
+        return isMouseDragt;
+    }
+
+    public static void setIsMouseDragt(boolean isMouseDragt) {
+        MouseMotion.isMouseDragt = isMouseDragt;
     }
 }
