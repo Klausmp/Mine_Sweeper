@@ -14,6 +14,7 @@ public class World {
     public int height;
     public int amountOfBombs;
     public List<Tile> tileList = new ArrayList<Tile>();
+    public boolean isDead = false;
 
     public World(int worldPosX, int worldPosY, int wight, int height, int amountOfBombs) {
         setWorldPosX(worldPosX);
@@ -97,6 +98,14 @@ public class World {
 
         }
 
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     public boolean[][] getMap() {
