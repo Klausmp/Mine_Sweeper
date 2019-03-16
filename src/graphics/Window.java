@@ -3,6 +3,7 @@ package graphics;
 import graphics.displays.GamePanel;
 import input.Keyboard;
 import main.Main;
+import org.jetbrains.annotations.Contract;
 import util.Util;
 
 import javax.swing.*;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 
 public class Window {
-    public static GamePanel gamePanel = new GamePanel();
     public static int windowSizeX;
     public static int windowSizeY;
+    public static GamePanel gamePanel = new GamePanel();
     public static JFrame window = new JFrame();
     public static List<JPanel> panelList = new ArrayList<JPanel>();
 
@@ -64,6 +65,7 @@ public class Window {
         setWindowSizeY(height);
     }
 
+    @Contract(pure = true)
     public static int getWindowSizeX() {
         return windowSizeX;
     }
@@ -72,6 +74,7 @@ public class Window {
         Window.windowSizeX = windowSizeX;
     }
 
+    @Contract(pure = true)
     public static int getWindowSizeY() {
         return windowSizeY;
     }
@@ -80,6 +83,7 @@ public class Window {
         Window.windowSizeY = windowSizeY;
     }
 
+    @Contract(pure = true)
     public static JFrame getWindow() {
         return window;
     }
@@ -88,6 +92,7 @@ public class Window {
         Window.window = window;
     }
 
+    @Contract(pure = true)
     public static List<JPanel> getPanelList() {
         return panelList;
     }
@@ -96,6 +101,7 @@ public class Window {
         Window.panelList = panelList;
     }
 
+    @Contract(pure = true)
     public static GamePanel getGamePanel() {
         return gamePanel;
     }
