@@ -1,5 +1,7 @@
 package graphics;
 
+import org.jetbrains.annotations.Contract;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -30,7 +32,12 @@ public enum Texture {
     NUMBERSEVEN(TextureLoader.getNumberSeven()),
     NUMBEREIGHT(TextureLoader.getNumberEight()),
     NUMBERNINE(TextureLoader.getNumberNine()),
-    MINUS(TextureLoader.getMinus());
+    MINUS(TextureLoader.getMinus()),
+    GRINSMILY(TextureLoader.getGrinSmiley()),
+    OSMILY(TextureLoader.getOSmiley()),
+    DEADSMILY(TextureLoader.getDeadSmily()),
+    LAUGHTSMILY(TextureLoader.getLaughtSmily()),
+    UPSIDEDOWNSMILY(TextureLoader.getUpsideDownSmily());
 
     public BufferedImage texture;
 
@@ -38,6 +45,7 @@ public enum Texture {
         setTexture(texture);
     }
 
+    @Contract(pure = true)
     public BufferedImage getTexture() {
         //System.out.println("used");
         return texture;
@@ -52,8 +60,10 @@ public enum Texture {
                 skin, zero, one, two, three, four, five, six, seven, eight,
                 numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine,
                 minus,
-                top, bomb, flag, deadBomb, down;
+                top, bomb, flag, deadBomb, down,
+                grinSmiley, oSmiley, deadSmily, laughtSmily, upsideDownSmily;
         public static final int TILESIZE = 15;
+        public static final int SMILYSIZE = 24;
         public static final int CLOCKWIGHT = 11;
         public static final int CLOCKHEIGHT = 21;
 
@@ -110,6 +120,16 @@ public enum Texture {
                 setNumberNine(getSkin().getSubimage(108, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
 
                 setMinus(getSkin().getSubimage(120, 33, getCLOCKWIGHT(), getCLOCKHEIGHT()));
+
+                setGrinSmiley(getSkin().getSubimage(1, 56, getSMILYSIZE(), getSMILYSIZE()));
+
+                setOSmiley(getSkin().getSubimage(28, 56, getSMILYSIZE(), getSMILYSIZE()));
+
+                setDeadSmily(getSkin().getSubimage(55, 56, getSMILYSIZE(), getSMILYSIZE()));
+
+                setLaughtSmily(getSkin().getSubimage(82, 56, getSMILYSIZE(), getSMILYSIZE()));
+
+                setUpsideDownSmily(getSkin().getSubimage(109, 56, getSMILYSIZE(), getSMILYSIZE()));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -324,6 +344,46 @@ public enum Texture {
             TextureLoader.minus = minus;
         }
 
+        public static BufferedImage getGrinSmiley() {
+            return grinSmiley;
+        }
+
+        public static void setGrinSmiley(BufferedImage grinSmiley) {
+            TextureLoader.grinSmiley = grinSmiley;
+        }
+
+        public static BufferedImage getOSmiley() {
+            return oSmiley;
+        }
+
+        public static void setOSmiley(BufferedImage oSmiley) {
+            TextureLoader.oSmiley = oSmiley;
+        }
+
+        public static BufferedImage getDeadSmily() {
+            return deadSmily;
+        }
+
+        public static void setDeadSmily(BufferedImage deadSmily) {
+            TextureLoader.deadSmily = deadSmily;
+        }
+
+        public static BufferedImage getLaughtSmily() {
+            return laughtSmily;
+        }
+
+        public static void setLaughtSmily(BufferedImage laughtSmily) {
+            TextureLoader.laughtSmily = laughtSmily;
+        }
+
+        public static BufferedImage getUpsideDownSmily() {
+            return upsideDownSmily;
+        }
+
+        public static void setUpsideDownSmily(BufferedImage upsideDownSmily) {
+            TextureLoader.upsideDownSmily = upsideDownSmily;
+        }
+
         public static int getTILESIZE() {
             return TILESIZE;
         }
@@ -335,5 +395,9 @@ public enum Texture {
         public static int getCLOCKHEIGHT() {
             return CLOCKHEIGHT;
         }
+
+        public static int getSMILYSIZE() {
+            return SMILYSIZE;
+        }
     }
-}
+    }
