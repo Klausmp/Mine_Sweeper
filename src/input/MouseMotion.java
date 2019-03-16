@@ -14,7 +14,7 @@ public class MouseMotion implements MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        setIsMouseDragt(true);
+        setMouseDragt(true);
         if (SwingUtilities.isLeftMouseButton(e)) {
             setMouseDraggedX(e.getX());
             setMouseDraggedY(e.getY());
@@ -30,7 +30,7 @@ public class MouseMotion implements MouseMotionListener {
     public static void resetMouseMotion(){
         MouseMotion.setMouseDraggedX(-1000);
         MouseMotion.setMouseDraggedY(-1000);
-        setIsMouseDragt(false);
+        setMouseDragt(false);
     }
 
     public static int getMouseDraggedX() {
@@ -65,11 +65,11 @@ public class MouseMotion implements MouseMotionListener {
         MouseMotion.mouseMovedY = mouseMovedY;
     }
 
-    public static boolean isIsMouseDragt() {
+    public static boolean isMouseDragt() {
         return isMouseDragt;
     }
 
-    public static void setIsMouseDragt(boolean isMouseDragt) {
+    public static void setMouseDragt(boolean isMouseDragt) {
         MouseMotion.isMouseDragt = isMouseDragt;
     }
 }
