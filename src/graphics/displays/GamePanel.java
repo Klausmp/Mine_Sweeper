@@ -1,6 +1,7 @@
 package graphics.displays;
 
 import entity.BombCounter;
+import entity.StartButton;
 import entity.Timer;
 import entity.Tile;
 import input.Mouse;
@@ -21,6 +22,7 @@ public class GamePanel extends JPanel {
     public static List<World> worldList = new ArrayList<World>();
     public static Timer timer = new Timer(200, 200, false);
     public static BombCounter bombCounter = new BombCounter(180, 100, true);
+    public static StartButton startButton = new StartButton(210, 50);
 
     public GamePanel() {
         screen.setVisible(true);
@@ -32,14 +34,20 @@ public class GamePanel extends JPanel {
     }
 
     public static void update() {
+        getStartButton().update();
+        if (getWorldList().isEmpty()){
+            getWorldList().add(new World(10, 10, 10, 10, 10));
+            getTimer().reset();
+            getBombCounter().reset();
+        }
         Objects.requireNonNull(getWorld()).update();
         if (isGameStarted()){
-            timer.start();
+            getTimer().start();
         } else {
-            timer.stop();
+            getTimer().stop();
         }
-        timer.update();
-        bombCounter.update();
+        getTimer().update();
+        getBombCounter().update();
     }
 
     static class Screen extends JLabel {
@@ -57,8 +65,9 @@ public class GamePanel extends JPanel {
             for (Tile tile : getWorld().getTileList()) {
                 g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
             }
-            timer.render(g);
-            bombCounter.render(g);
+            getTimer().render(g);
+            getBombCounter().render(g);
+            getStartButton().render(g);
         }
     }
 
@@ -106,4 +115,27 @@ public class GamePanel extends JPanel {
         GamePanel.worldList = worldList;
     }
 
+    public static Timer getTimer() {
+        return timer;
+    }
+
+    public static void setTimer(Timer timer) {
+        GamePanel.timer = timer;
+    }
+
+    public static BombCounter getBombCounter() {
+        return bombCounter;
+    }
+
+    public static void setBombCounter(BombCounter bombCounter) {
+        GamePanel.bombCounter = bombCounter;
+    }
+
+    public static StartButton getStartButton() {
+        return startButton;
+    }
+
+    public static void setStartButton(StartButton startButton) {
+        GamePanel.startButton = startButton;
+    }
 }
