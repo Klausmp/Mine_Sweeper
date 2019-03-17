@@ -79,7 +79,7 @@ public abstract class Counter extends Entity {
             g.drawImage(getLook1(), getPosX(), getPosY(), null);
         }
         g.drawImage(getLook2(), getPosX() + getLook2().getWidth() + 1, getPosY(), null);
-        g.drawImage(getLook3(), getPosX() + (getLook3().getWidth() * 2) + 1, getPosY(), null);
+        g.drawImage(getLook3(), getPosX() + (getLook3().getWidth() * 2) + 2, getPosY(), null);
 
     }
 

@@ -20,9 +20,9 @@ import java.util.Objects;
 public class GamePanel extends JPanel {
     public static Screen screen = new Screen();
     public static List<World> worldList = new ArrayList<World>();
-    public static Timer timer = new Timer(200, 200, false);
-    public static BombCounter bombCounter = new BombCounter(180, 100, true);
-    public static StartButton startButton = new StartButton(210, 50);
+    public static Timer timer = new Timer(118, 7, false);
+    public static BombCounter bombCounter = new BombCounter(26, 7, true);
+    public static StartButton startButton = new StartButton(77, 5);
 
     public GamePanel() {
         screen.setVisible(true);
@@ -30,13 +30,13 @@ public class GamePanel extends JPanel {
         add(screen, BorderLayout.CENTER);
         addMouseListener(new Mouse());
         addMouseMotionListener(new MouseMotion());
-        worldList.add(new World(10, 10, 10, 10, 10));
+        worldList.add(new World(26, 36, 8, 8, 10));
     }
 
     public static void update() {
         getStartButton().update();
         if (getWorldList().isEmpty()){
-            getWorldList().add(new World(10, 10, 10, 10, 10));
+            worldList.add(new World(26, 36, 8, 8, 10));
             getTimer().reset();
             getBombCounter().reset();
         }
@@ -50,27 +50,6 @@ public class GamePanel extends JPanel {
         getBombCounter().update();
     }
 
-    static class Screen extends JLabel {
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            drawBackground(g);
-            drawGame(g);
-        }
-
-        public void drawBackground(Graphics g) {
-            Util.drawBackground(g, Color.BLACK);
-        }
-
-        public void drawGame(Graphics g) {
-            for (Tile tile : getWorld().getTileList()) {
-                g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
-            }
-            getTimer().render(g);
-            getBombCounter().render(g);
-            getStartButton().render(g);
-        }
-    }
-
     @Nullable
     public static World getWorld() {
         for (World world : getWorldList()) {
@@ -81,7 +60,7 @@ public class GamePanel extends JPanel {
     }
 
     public static boolean isGameStarted(){
-        for (Tile tile: getWorld().getTileList()){
+        for (Tile tile: Objects.requireNonNull(getWorld()).getTileList()){
             if (tile.isActivated() && !getWorld().isGameWon() && !getWorld().isGameOver()){
                 return true;
             }
@@ -95,6 +74,27 @@ public class GamePanel extends JPanel {
 
     public static void updateScreen() {
         screen.repaint();
+    }
+
+    static class Screen extends JLabel {
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            drawBackground(g);
+            drawGame(g);
+        }
+
+        public void drawBackground(Graphics g) {
+            Util.drawBackground(g, new Color(26, 38, 42, 255));
+        }
+
+        public void drawGame(Graphics g) {
+            for (Tile tile : Objects.requireNonNull(getWorld()).getTileList()) {
+                g.drawImage(tile.getLook(), Util.getTileDisplayPosX(tile.getPosX(), tile.getWight()), Util.getTileDisplayPosY(tile.getPosY(), tile.getHeight()), tile.getWight(), tile.getHeight(), null);
+            }
+            getTimer().render(g);
+            getBombCounter().render(g);
+            getStartButton().render(g);
+        }
     }
 
     @Contract(pure = true)

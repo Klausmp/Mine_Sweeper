@@ -28,7 +28,11 @@ public class Bomb extends Tile {
 
     public void endOfGame() {
         setGameEnd(true);
-        setLook(Texture.BOMB.getTexture());
+        if (isActivated()) {
+            setLook(Texture.DEADBOMB.getTexture());
+        } else {
+            setLook(Texture.BOMB.getTexture());
+        }
     }
 
     public boolean isGameEnd() {

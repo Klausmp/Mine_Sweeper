@@ -28,7 +28,7 @@ public class Window {
         //Breite und Höhe der Texturen
 
         //Windowsize ETC
-        resizeWindow(400, 400);
+        resizeWindow(183, 193);
 
         //Window
         getWindow().setTitle(Main.gameTitle);

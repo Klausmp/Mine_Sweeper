@@ -2,6 +2,7 @@ package world;
 
 import entity.Bomb;
 import entity.Tile;
+import graphics.Texture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,15 @@ public class World {
             for (Tile tile : getTileList()) {
                 tile.update();
             }
+        } else {
+            for (Tile tile : getTileList()) {
+                if (!tile.isBomb() && tile.getBombsAround() <= 0) {
+                    tile.setLook(Texture.ZERO.getTexture());
+                }
+                if (tile.isBomb()){
+                    tile.setLook(Texture.BOMB.getTexture());
+                }
+            }
         }
         //System.out.println("GW " +isGameWon());
         //System.out.println("GO " +isGameOver());
@@ -41,20 +51,20 @@ public class World {
         return isEveryBombFlagt() || isEveryNotBombActivated();
     }
 
-    public boolean isEveryBombFlagt(){
+    public boolean isEveryBombFlagt() {
         boolean result = false;
-        for (Tile tile: getTileList()) {
-            if (tile.isFlagged() && !tile.isBomb()){
+        for (Tile tile : getTileList()) {
+            if (tile.isFlagged() && !tile.isBomb()) {
                 return false;
             }
-            if (tile.isBomb() && !tile.isFlagged()){
+            if (tile.isBomb() && !tile.isFlagged()) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean isEveryNotBombActivated(){
+    public boolean isEveryNotBombActivated() {
         for (Tile tile : getTileList()) {
             if (!tile.isActivated() && !tile.isBomb()) {
                 return false;

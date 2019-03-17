@@ -29,7 +29,7 @@ public class Tile extends Entity {
 
     public int bombsAround() {
         int result = 0;
-        for (Tile tile : GamePanel.getWorld().getTileList()) {
+        for (Tile tile : Objects.requireNonNull(GamePanel.getWorld()).getTileList()) {
             if (tile.getPosX() == getPosX() - 1 && tile.getPosY() == getPosY() + 1 && tile.isBomb()) result++;
             if (tile.getPosX() == getPosX() && tile.getPosY() == getPosY() + 1 && tile.isBomb()) result++;
             if (tile.getPosX() == getPosX() + 1 && tile.getPosY() == getPosY() + 1 && tile.isBomb()) result++;
@@ -43,7 +43,7 @@ public class Tile extends Entity {
     }
 
     public void searchForZeroTiles() {
-        for (Tile tile : GamePanel.getWorld().getTileList()) {
+        for (Tile tile : Objects.requireNonNull(GamePanel.getWorld()).getTileList()) {
             if (tile.getPosX() == getPosX() - 1 && tile.getPosY() == getPosY() + 1 && tile.getBombsAround() == 0)
                 tile.setActivated(true);
             if (tile.getPosX() == getPosX() && tile.getPosY() == getPosY() + 1 && tile.getBombsAround() == 0)
@@ -64,7 +64,7 @@ public class Tile extends Entity {
     }
 
     public void searchForNormalTiles() {
-        for (Tile tile : GamePanel.getWorld().getTileList()) {
+        for (Tile tile : Objects.requireNonNull(GamePanel.getWorld()).getTileList()) {
             if (tile.getPosX() == getPosX() - 1 && tile.getPosY() == getPosY() + 1 && tile.getBombsAround() != 0) {
                 tile.setActivated(true);
                 tile.setRemoteActivated(true);
@@ -161,6 +161,7 @@ public class Tile extends Entity {
             }
             if (isRemoteActivated()) {
                 setRemoteActivated(false);
+                setActivated(true);
                 switch (getBombsAround()) {
                     case -1:
                         setLook(Texture.ZERO.getTexture());
