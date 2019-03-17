@@ -1,7 +1,7 @@
 package main;
 
 /**
- * @author Klausmp
+ * @author Klausmp V 1.0
  */
 
 public class Main {
