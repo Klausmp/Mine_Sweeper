@@ -33,9 +33,9 @@ public enum Texture {
     MINUS(TextureLoader.getMinus()),
     GRINSMILY(TextureLoader.getGrinSmiley()),
     OSMILY(TextureLoader.getOSmiley()),
-    DEADSMILY(TextureLoader.getDeadSmily()),
-    LAUGHTSMILY(TextureLoader.getLaughtSmily()),
-    UPSIDEDOWNSMILY(TextureLoader.getUpsideDownSmily());
+    DEADSMILY(TextureLoader.getDeadSmiley()),
+    LAUGHTSMILY(TextureLoader.getLaughsSmiley()),
+    UPSIDEDOWNSMILY(TextureLoader.getUpsideDownSmiley());
 
     public BufferedImage texture;
 
@@ -58,7 +58,7 @@ public enum Texture {
                 numberZero, numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine,
                 minus,
                 top, bomb, flag, deadBomb, down,
-                grinSmiley, oSmiley, deadSmily, laughtSmily, upsideDownSmily;
+                grinSmiley, oSmiley, deadSmiley, laughsSmiley, upsideDownSmiley;
         public static final int TILESIZE = 15;
         public static final int SMILYSIZE = 24;
         public static final int CLOCKWIGHT = 11;
@@ -122,11 +122,11 @@ public enum Texture {
 
                 setOSmiley(getSkin().getSubimage(28, 56, getSMILYSIZE(), getSMILYSIZE()));
 
-                setDeadSmily(getSkin().getSubimage(55, 56, getSMILYSIZE(), getSMILYSIZE()));
+                setDeadSmiley(getSkin().getSubimage(55, 56, getSMILYSIZE(), getSMILYSIZE()));
 
-                setLaughtSmily(getSkin().getSubimage(82, 56, getSMILYSIZE(), getSMILYSIZE()));
+                setLaughsSmiley(getSkin().getSubimage(82, 56, getSMILYSIZE(), getSMILYSIZE()));
 
-                setUpsideDownSmily(getSkin().getSubimage(109, 56, getSMILYSIZE(), getSMILYSIZE()));
+                setUpsideDownSmiley(getSkin().getSubimage(109, 56, getSMILYSIZE(), getSMILYSIZE()));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -357,28 +357,28 @@ public enum Texture {
             TextureLoader.oSmiley = oSmiley;
         }
 
-        public static BufferedImage getDeadSmily() {
-            return deadSmily;
+        public static BufferedImage getDeadSmiley() {
+            return deadSmiley;
         }
 
-        public static void setDeadSmily(BufferedImage deadSmily) {
-            TextureLoader.deadSmily = deadSmily;
+        public static void setDeadSmiley(BufferedImage deadSmiley) {
+            TextureLoader.deadSmiley = deadSmiley;
         }
 
-        public static BufferedImage getLaughtSmily() {
-            return laughtSmily;
+        public static BufferedImage getLaughsSmiley() {
+            return laughsSmiley;
         }
 
-        public static void setLaughtSmily(BufferedImage laughtSmily) {
-            TextureLoader.laughtSmily = laughtSmily;
+        public static void setLaughsSmiley(BufferedImage laughsSmiley) {
+            TextureLoader.laughsSmiley = laughsSmiley;
         }
 
-        public static BufferedImage getUpsideDownSmily() {
-            return upsideDownSmily;
+        public static BufferedImage getUpsideDownSmiley() {
+            return upsideDownSmiley;
         }
 
-        public static void setUpsideDownSmily(BufferedImage upsideDownSmily) {
-            TextureLoader.upsideDownSmily = upsideDownSmily;
+        public static void setUpsideDownSmiley(BufferedImage upsideDownSmiley) {
+            TextureLoader.upsideDownSmiley = upsideDownSmiley;
         }
 
         public static int getTILESIZE() {
