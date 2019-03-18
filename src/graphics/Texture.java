@@ -1,7 +1,5 @@
 package graphics;
 
-import org.jetbrains.annotations.Contract;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -45,7 +43,6 @@ public enum Texture {
         setTexture(texture);
     }
 
-    @Contract(pure = true)
     public BufferedImage getTexture() {
         //System.out.println("used");
         return texture;

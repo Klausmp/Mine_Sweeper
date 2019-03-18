@@ -6,8 +6,6 @@ import entity.Timer;
 import entity.Tile;
 import input.Mouse;
 import input.MouseMotion;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 import util.Util;
 import world.World;
 
@@ -49,8 +47,6 @@ public class GamePanel extends JPanel {
         getTimer().update();
         getBombCounter().update();
     }
-
-    @Nullable
     public static World getWorld() {
         for (World world : getWorldList()) {
             return world;
@@ -97,7 +93,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-    @Contract(pure = true)
     public static Screen getScreen() {
         return screen;
     }
@@ -106,7 +101,6 @@ public class GamePanel extends JPanel {
         GamePanel.screen = screen;
     }
 
-    @Contract(pure = true)
     public static List<World> getWorldList() {
         return worldList;
     }
