@@ -31,11 +31,11 @@ public enum Texture {
     NUMBEREIGHT(TextureLoader.getNumberEight()),
     NUMBERNINE(TextureLoader.getNumberNine()),
     MINUS(TextureLoader.getMinus()),
-    GRINSMILY(TextureLoader.getGrinSmiley()),
-    OSMILY(TextureLoader.getOSmiley()),
-    DEADSMILY(TextureLoader.getDeadSmiley()),
-    LAUGHTSMILY(TextureLoader.getLaughsSmiley()),
-    UPSIDEDOWNSMILY(TextureLoader.getUpsideDownSmiley());
+    GRINSMILEY(TextureLoader.getGrinSmiley()),
+    OSMILEY(TextureLoader.getOSmiley()),
+    DEADSMILEY(TextureLoader.getDeadSmiley()),
+    LAUGHTSMILEY(TextureLoader.getLaughsSmiley()),
+    UPSIDEDOWNSMILEY(TextureLoader.getUpsideDownSmiley());
 
     public BufferedImage texture;
 

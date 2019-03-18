@@ -14,16 +14,16 @@ public class StartButton extends Entity {
 
     public void render(Graphics g) {
         if (!MouseMotion.isMouseDragt() && !Objects.requireNonNull(GamePanel.getWorld()).isGameOver() && !GamePanel.getWorld().isGameWon()) {
-            g.drawImage(Texture.GRINSMILY.getTexture(), getPosX(), getPosY(), null);
+            g.drawImage(Texture.GRINSMILEY.getTexture(), getPosX(), getPosY(), null);
         }
         if (MouseMotion.isMouseDragt()) {
-            g.drawImage(Texture.OSMILY.getTexture(), getPosX(), getPosY(), null);
+            g.drawImage(Texture.OSMILEY.getTexture(), getPosX(), getPosY(), null);
         }
         if (Objects.requireNonNull(GamePanel.getWorld()).isGameOver()){
-            g.drawImage(Texture.DEADSMILY.getTexture(), getPosX(), getPosY(), null);
+            g.drawImage(Texture.DEADSMILEY.getTexture(), getPosX(), getPosY(), null);
         }
         if (GamePanel.getWorld().isGameWon()){
-            g.drawImage(Texture.LAUGHTSMILY.getTexture(), getPosX(), getPosY(), null);
+            g.drawImage(Texture.LAUGHTSMILEY.getTexture(), getPosX(), getPosY(), null);
         }
     }
 
