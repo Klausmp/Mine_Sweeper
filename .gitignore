@@ -1,4 +1,5 @@
 .idea
-Mine_Sweeper.iml
+*.iml
 out
 src/test/TEST.java
+src/META-INF
