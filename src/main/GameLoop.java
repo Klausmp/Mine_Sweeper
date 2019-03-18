@@ -35,7 +35,7 @@ public class GameLoop {
 
     public void init() {
         Texture.TextureLoader.loadTextures();
-        Window window = new Window();
+        window = new Window();
     }
 
     private static void gameLoop() {

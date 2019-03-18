@@ -27,9 +27,9 @@ public class Window {
         //Breite und Höhe der Texturen
 
         //Windowsize ETC
-        resizeWindow(183, 193);
 
         //Window
+
         getWindow().setTitle(Main.gameTitle);
         getWindow().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getWindow().setLocationRelativeTo(null);
@@ -38,12 +38,13 @@ public class Window {
         getWindow().add(getGamePanel(), BorderLayout.CENTER);
         getWindow().addKeyListener(new Keyboard());
         getWindow().setVisible(true);
-
+        resizeWindow(183, 193);
         /*Buttons*/
 
     }
 
     public static void resizeWindow(int wight, int height) {
+        Dimension dimension = new Dimension(wight, height);
         if (Util.getScreenSize().getWidth() == 1360 && Util.getScreenSize().getHeight() == 768) {
             wight = (wight + 2) - 10;
             height = (height + 2) + 12;
@@ -58,8 +59,12 @@ public class Window {
             wight = (wight + 2);
             height = (height + 2) + 23;
         }
-        getGamePanel().setScreenBounds(wight, height);
         getWindow().setSize(wight, height);
+        getGamePanel().setSize(wight, height);
+
+        if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+            getWindow().setSize(wight, (int) (height - (getWindow().getLocationOnScreen().getY() - getGamePanel().getLocationOnScreen().getY())));
+        }
         setWindowSizeX(wight);
         setWindowSizeY(height);
     }

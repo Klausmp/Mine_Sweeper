@@ -4,6 +4,7 @@ import entity.BombCounter;
 import entity.StartButton;
 import entity.Timer;
 import entity.Tile;
+import graphics.Window;
 import input.Mouse;
 import input.MouseMotion;
 import util.Util;
@@ -72,7 +73,7 @@ public class GamePanel extends JPanel {
         screen.repaint();
     }
 
-    static class Screen extends JLabel {
+    public static class Screen extends JLabel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             drawBackground(g);
